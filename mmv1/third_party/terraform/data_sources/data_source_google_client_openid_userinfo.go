@@ -25,7 +25,14 @@ func dataSourceGoogleClientOpenIDUserinfoRead(d *schema.ResourceData, meta inter
 		return err
 	}
 
+	// When UserProjectOverride and BillingProject is set for the provider, the header X-Goog-User-Project is set for the API requests.
+	// But it causes an error when calling GetCurrentUserEmail. It makes sense to not set header X-Goog-User-Project by setting UserProjectOverride
+	// to false when calling GetCurrentUserEmail, because it does not create a bill.
+	origUserProjectOverride := config.UserProjectOverride
+	config.UserProjectOverride = false
 	email, err := GetCurrentUserEmail(config, userAgent)
+	config.UserProjectOverride = origUserProjectOverride
+
 	if err != nil {
 		return err
 	}
