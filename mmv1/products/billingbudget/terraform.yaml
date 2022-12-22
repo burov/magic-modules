@@ -93,8 +93,6 @@ overrides: !ruby/object:Overrides::ResourceOverrides
         custom_flatten: 'templates/terraform/custom_flatten/object_to_bool.go.erb'
       amount.specifiedAmount.currencyCode: !ruby/object:Overrides::Terraform::PropertyOverride
         default_from_api: true
-      budgetFilter.creditTypes: !ruby/object:Overrides::Terraform::PropertyOverride
-        default_from_api: true
       budgetFilter: !ruby/object:Overrides::Terraform::PropertyOverride
         default_from_api: true
         update_mask_fields:
@@ -104,9 +102,9 @@ overrides: !ruby/object:Overrides::ResourceOverrides
          - "budgetFilter.customPeriod"
          - "budgetFilter.services"
          - "budgetFilter.creditTypesTreatment"   
+         - "budgetFilter.creditTypes"
+         - "budgetFilter.subaccounts"
       budgetFilter.services: !ruby/object:Overrides::Terraform::PropertyOverride
-        default_from_api: true
-      budgetFilter.subaccounts: !ruby/object:Overrides::Terraform::PropertyOverride
         default_from_api: true
       budgetFilter.labels: !ruby/object:Overrides::Terraform::PropertyOverride
         default_from_api: true
